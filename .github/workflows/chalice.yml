@@ -38,6 +38,7 @@ jobs:
         run: |
           pip install chalice
           cd examples/aws-lambda
+          pip install -r requirements.txt
           chalice deploy
         shell: bash
         env:
