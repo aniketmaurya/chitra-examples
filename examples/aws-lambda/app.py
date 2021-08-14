@@ -28,14 +28,14 @@ def postprocess(data: torch.Tensor) -> str:
 
 
 def model_loader(buffer: io.BytesIO) -> torch.nn.Module:
-    model: torch.nn.Module = create_model("efficientnet_b0", pretrained=False)
+    model: torch.nn.Module = create_model("efficientnet_b0", pretrained=False).eval()
     model.load_state_dict(torch.load(buffer))
     return model
 
 
 server = ChaliceServer(
-    "image-classification",
-    MODEL_PATH,
+    api_type="image-classification",
+    model_path=MODEL_PATH,
     model_loader=model_loader,
     preprocess_fn=preprocess,
     postprocess_fn=postprocess,
