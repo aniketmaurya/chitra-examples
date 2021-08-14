@@ -13,8 +13,8 @@ MODEL_PATH = "s3://gflow-models/efficientnet_b0.pth"
 LABELS = load_imagenet_labels()
 
 
-def preprocess(data) -> torch.Tensor:
-    image = Chitra(data)
+def preprocess(content_raw_body) -> torch.Tensor:
+    image = Chitra(content_raw_body)
     image.resize((256, 256))
     x = image.numpy().astype(np.float32)
     x = x / 255.0
@@ -41,4 +41,4 @@ server = ChaliceServer(
     postprocess_fn=postprocess,
 )
 app = server.app
-server.run("route")
+server.run("route", content_types=["image/jpeg"])
