@@ -37,7 +37,7 @@ jobs:
           cd examples/aws-lambda
           pip install -r requirements.txt
           pip install smart_open[s3]
-          chalice deploy
+       
         shell: bash
 
       - name: Chalice Deploy
