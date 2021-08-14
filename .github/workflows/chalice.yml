@@ -41,7 +41,9 @@ jobs:
         shell: bash
 
       - name: Chalice Deploy
-        run: chalice deploy
+        run: |
+          cd examples/aws-lambda
+          chalice deploy
         shell: bash
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
